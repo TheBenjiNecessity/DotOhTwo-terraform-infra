@@ -111,7 +111,7 @@ resource "aws_ecs_task_definition" "dotohtwo_review_ingestor_taskdefinition" {
   container_definitions = jsonencode([
     {
       name      = "dotohtwo-review-ingestor"
-      image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/dotohtwo-review-ingestor:latest"
+      image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/dotohtwo/review-ingestion-api:latest"
       cpu       = 256
       memory    = 256
       essential = true
