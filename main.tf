@@ -55,7 +55,8 @@ module "ecs" {
   subnet_ids                  = module.vpc.subnet_ids
   ecs_tasks_security_group_id = module.vpc.ecs_instances_security_group_id
   dotohtwo_asg_arn            = module.ec2.dotohtwo_asg_arn
-  dotohtwo_targetgroup_arn    = module.ec2.dotohtwo_targetgroup_arn
+  dotohtwo_targetgroup_arn        = module.ec2.dotohtwo_targetgroup_arn
+  review_ingestor_targetgroup_arn = module.ec2.dotohtwo_review_ingestor_tg_arn
   execution_role_arn          = module.iam.task_execution_role_arn
   task_role_arn               = module.iam.task_role_arn
   db_endpoint                 = module.rds.db_endpoint

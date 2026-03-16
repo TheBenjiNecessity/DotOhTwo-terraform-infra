@@ -13,6 +13,11 @@ output "dotohtwo_targetgroup_port" {
   value       = aws_lb_target_group.dotohtwo_targetgroup.port
 }
 
+output "dotohtwo_review_ingestor_tg_arn" {
+  description = "The ARN of the review ingestor Target Group"
+  value       = aws_lb_target_group.dotohtwo_review_ingestor_tg.arn
+}
+
 output "dotohtwo_loadbalancer_dns" {
   description = "The DNS name of the Load Balancer"
   value       = aws_lb.dotohtwo_loadbalancer.dns_name

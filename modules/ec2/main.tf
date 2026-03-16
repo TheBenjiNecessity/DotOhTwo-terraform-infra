@@ -76,6 +76,23 @@ resource "aws_lb_target_group" "dotohtwo_targetgroup" {
   }
 }
 
+resource "aws_lb_target_group" "dotohtwo_review_ingestor_tg" {
+  name        = "dotohtwo-review-ingestor-tg"
+  port        = 8080
+  protocol    = "HTTP"
+  target_type = "ip"
+  vpc_id      = var.vpc_id
+
+  health_check {
+    path                = "/actuator/health"
+    healthy_threshold   = 2
+    unhealthy_threshold = 5
+    interval            = 30
+    timeout             = 10
+    matcher             = "200-299"
+  }
+}
+
 resource "aws_lb_listener" "dotohtwo_loadbalancer_listener" {
   load_balancer_arn = aws_lb.dotohtwo_loadbalancer.arn
   port              = 80
@@ -84,5 +101,21 @@ resource "aws_lb_listener" "dotohtwo_loadbalancer_listener" {
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.dotohtwo_targetgroup.arn
+  }
+}
+
+resource "aws_lb_listener_rule" "review_ingestor_rule" {
+  listener_arn = aws_lb_listener.dotohtwo_loadbalancer_listener.arn
+  priority     = 100
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.dotohtwo_review_ingestor_tg.arn
+  }
+
+  condition {
+    path_pattern {
+      values = ["/reviews/*"]
+    }
   }
 }

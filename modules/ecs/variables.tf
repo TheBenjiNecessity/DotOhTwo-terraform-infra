@@ -23,6 +23,11 @@ variable "dotohtwo_targetgroup_arn" {
   type        = string
 }
 
+variable "review_ingestor_targetgroup_arn" {
+  description = "ARN of the ALB target group for the review ingestor service"
+  type        = string
+}
+
 variable "execution_role_arn" {
   description = "ARN of the IAM role used by ECS to pull images and write logs"
   type        = string
