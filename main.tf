@@ -27,6 +27,10 @@ module "keyspaces" {
   source = "./modules/keyspaces"
 }
 
+module "cognito" {
+  source = "./modules/cognito"
+}
+
 module "rds" {
   source = "./modules/rds"
 
@@ -62,4 +66,7 @@ module "ecs" {
   db_endpoint                 = module.rds.db_endpoint
   db_secret_arn               = module.rds.db_secret_arn
   keyspace_name               = module.keyspaces.keyspace_name
+  cognito_issuer_uri          = module.cognito.issuer_uri
+  cognito_user_pool_id        = module.cognito.user_pool_id
+  cognito_user_pool_client_id = module.cognito.user_pool_client_id
 }

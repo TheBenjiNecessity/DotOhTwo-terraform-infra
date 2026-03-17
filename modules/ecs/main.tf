@@ -63,7 +63,10 @@ resource "aws_ecs_task_definition" "dotohtwo_taskdefinition" {
         { name = "SPRING_CASSANDRA_PORT",             value = "9142" },
         { name = "SPRING_CASSANDRA_KEYSPACE_NAME",    value = var.keyspace_name },
         { name = "SPRING_CASSANDRA_LOCAL_DATACENTER", value = "us-east-1" },
-        { name = "SPRING_CASSANDRA_SSL_ENABLED",      value = "true" }
+        { name = "SPRING_CASSANDRA_SSL_ENABLED",      value = "true" },
+        { name = "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI", value = var.cognito_issuer_uri },
+        { name = "COGNITO_USER_POOL_ID",              value = var.cognito_user_pool_id },
+        { name = "COGNITO_CLIENT_ID",                 value = var.cognito_user_pool_client_id }
       ]
 
       secrets = [
@@ -123,7 +126,10 @@ resource "aws_ecs_task_definition" "dotohtwo_review_ingestor_taskdefinition" {
         { name = "SPRING_CASSANDRA_PORT",                 value = "9142" },
         { name = "SPRING_CASSANDRA_KEYSPACE_NAME",        value = var.keyspace_name },
         { name = "SPRING_CASSANDRA_LOCAL_DATACENTER",     value = "us-east-1" },
-        { name = "SPRING_CASSANDRA_SSL_ENABLED",          value = "true" }
+        { name = "SPRING_CASSANDRA_SSL_ENABLED",          value = "true" },
+        { name = "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI", value = var.cognito_issuer_uri },
+        { name = "COGNITO_USER_POOL_ID",                  value = var.cognito_user_pool_id },
+        { name = "COGNITO_CLIENT_ID",                     value = var.cognito_user_pool_client_id }
       ]
 
       portMappings = [

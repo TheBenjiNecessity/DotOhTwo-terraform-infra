@@ -52,3 +52,18 @@ variable "db_secret_arn" {
   description = "ARN of the Secrets Manager secret containing the database password"
   type        = string
 }
+
+variable "cognito_issuer_uri" {
+  description = "JWT issuer URI for Spring Boot resource server configuration"
+  type        = string
+}
+
+variable "cognito_user_pool_id" {
+  description = "Cognito User Pool ID"
+  type        = string
+}
+
+variable "cognito_user_pool_client_id" {
+  description = "Cognito App Client ID"
+  type        = string
+}
