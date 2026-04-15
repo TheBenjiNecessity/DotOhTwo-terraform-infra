@@ -31,6 +31,10 @@ module "cognito" {
   source = "./modules/cognito"
 }
 
+module "codeartifact" {
+  source = "./modules/codeartifact"
+}
+
 module "rds" {
   source = "./modules/rds"
 
